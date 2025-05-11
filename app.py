@@ -39,4 +39,5 @@ def envoyer():
         return f"Erreur lors de l'envoi de l'e-mail : {str(e)}"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Port auto-assigné par Render
+    app.run(host='0.0.0.0', port=port, debug=True)
