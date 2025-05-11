@@ -15,8 +15,8 @@ def index():
 
 @app.route('/envoyer', methods=['POST'])
 def envoyer():
-    destinataire = request.form['email']
-    message_user = request.form['message']
+    destinataire = request.form['user_mail']
+    message_user = request.form['user_message']
 
     # Récupération des infos de connexion Gmail via variables d’environnement
     sender_email = os.environ.get('EMAIL_USER')
