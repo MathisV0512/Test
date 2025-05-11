@@ -15,11 +15,11 @@ def index():
 
 @app.route('/envoyer', methods=['POST'])
 def envoyer():
-    destinataire = request.form['user_mail']
+    sender_email = request.form['user_mail']
     message_user = request.form['user_message']
 
     # Récupération des infos de connexion Gmail via variables d’environnement
-    sender_email = os.environ.get('EMAIL_USER')
+    destinataire = os.environ.get('EMAIL_USER')
     sender_password = os.environ.get('EMAIL_PASS')
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
@@ -32,7 +32,7 @@ def envoyer():
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()
-            server.login(sender_email, sender_password)
+            server.login(destinataire, sender_password)
             server.send_message(msg)
         return f"E-mail envoyé à {destinataire} !"
     except Exception as e:
