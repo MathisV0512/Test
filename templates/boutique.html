@@ -2,11 +2,27 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Boutique</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <title>LucasPhoto29</title>
 </head>
 <body>
-    <h1>Bienvenue dans la boutique !</h1>
-    <p>Produits à venir...</p>
-    <a href="{{ url_for('index') }}">Retour à l'accueil</a>
+    <header>
+        <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
+        <a href="/">LucasPhoto29</a>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="{{ url_for('boutique') }}">Boutique</a></li>
+            <li><a href="#commentaires">Avis</a></li>
+        </ul>
+    </header>
+    
+    <footer>
+        <p>© 2023 Mon Site. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
