@@ -36,9 +36,9 @@ def envoyer():
             server.starttls()
             server.login(destinataire, sender_password)
             server.send_message(msg)
-        return "Message envoyé avec succès !"
-    except Exception as e:
         return redirect(url_for('index'))
+    except Exception as e:
+        return f"Erreur lors de l'envoi de l'e-mail : {str(e)}"
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Port auto-assigné par Render
     app.run(host='0.0.0.0', port=port, debug=True)
