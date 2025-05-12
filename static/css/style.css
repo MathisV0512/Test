@@ -51,9 +51,10 @@ nav .onglets a:hover {
 }
 
 nav .onglets input {
+    margin: 8px 20px;
     height: 30px;
-    font-size: 14px;
-    padding: 5px 15px;
+    font-size: 10px;
+    padding: 15px;
     border-radius: 20px;
     border: none;
     outline: none;
