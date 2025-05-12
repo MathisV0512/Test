@@ -13,6 +13,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/boutique')
+def boutique():
+    return render_template('boutique.html')
+
+
 @app.route('/envoyer', methods=['POST'])
 def envoyer():
     sender_email = request.form['user_mail']
