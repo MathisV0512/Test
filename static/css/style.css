@@ -6,8 +6,8 @@ body {
 
 nav {
     display: flex;
-    align-items: center; /* Aligne verticalement tous les éléments */
     justify-content: space-between;
+    align-items: center; /* ✅ Alignement vertical */
     flex-wrap: wrap;
     padding: 15px 20px;
     background-color: #ffffff;
@@ -15,11 +15,11 @@ nav {
     top: 0;
 }
 
-/* Regroupe le logo et le titre */
+/* Groupe logo + titre */
 nav .logo-titre {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espace réduit entre logo et titre */
+    gap: 10px;
 }
 
 nav img {
@@ -31,12 +31,14 @@ nav h1 {
     margin: 0;
 }
 
+/* Conteneur des onglets + barre de recherche */
 nav .onglets {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
+/* Liens */
 nav .onglets a {
     font-size: 16px;
     text-decoration: none;
@@ -50,20 +52,18 @@ nav .onglets a:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Champ de recherche */
 nav .onglets input {
-    margin: 8px 20px;
     height: 30px;
-    font-size: 10px;
-    padding: 15px;
+    font-size: 14px;
+    padding: 5px 15px;
     border-radius: 20px;
     border: none;
     outline: none;
     background-color: #f2f2f2;
-    max-width: 200px; /* Limite la longueur */
-    width: 100%;       /* Permet l’adaptation jusqu’à 200px max */
+    max-width: 200px;
     box-sizing: border-box;
 }
-
 
 header{
     display: flex;
