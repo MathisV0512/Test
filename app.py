@@ -19,15 +19,15 @@ def boutique():
 
 @app.route('/contact')
 def contact():
-    return redirect('contact.html')
+    return render_template('contact.html')
 
 @app.route('/about')
 def contact():
-    return redirect('about.html')
+    return render_template('about.html')
 
 @app.route('/commentaire')
 def contact():
-    return redirect('commentaire.html')
+    return render_template('commentaire.html')
 
 @app.route('/envoyer', methods=['POST'])
 def envoyer():
