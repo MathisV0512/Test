@@ -21,6 +21,23 @@
     </header>
 
     <div class="container">
+        <div class="commentaires" id="commentaires">
+            <h2 class="title_category">Avis</h2>
+            <div class="commentaire">
+                <img src="{{ url_for('static', filename='img/user.png') }}" class="commentaire_img" alt="photo de profil utilisateur">
+                <div class="commentaire_text">
+                    <h3 class="commentaire_nom">Nom de l'utilisateur</h3>
+                    <p class="commentaire_message">Incroyable !</p>
+                </div>
+            </div>
+            <div class="commentaire">
+                <img src="{{ url_for('static', filename='img/user.png') }}" class="commentaire_img" alt="photo de profil utilisateur">
+                <div class="commentaire_text">
+                    <h3 class="commentaire_nom">Nom de l'utilisateur</h3>
+                    <p class="commentaire_message">Super design, mais quelques bugs à corriger.</p>
+                </div>
+            </div>
+        </div>
     </div>
     
     <footer>

@@ -16,87 +16,22 @@
         <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
         <a href="/">LucasPhoto29</a>
         <ul>
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#about">À propos</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="{{ url_for('about') }}">À propos</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
             <li><a href="{{ url_for('boutique') }}">Boutique</a></li>
-            <li><a href="#commentaires">Avis</a></li>
+            <li><a href="{{ url_for('commentaire') }}">Avis</a></li>
         </ul>
     </header>
 
     <div class="container">
-        <div class="bienvenue" id="accueil">
+        <div class="bienvenue">
             <img src="{{ url_for('static', filename='img/accueil.jpg') }}" alt="image d'accueil">
             <div class="texte">
                 <h1>Bienvenue sur mon site</h1>
                 <p>Voici un exemple de page d'accueil.</p>
             </div>
         </div>
-
         <div class="separateur"></div>
-
-        <div class="about" id="about">
-            <h2 class="title_category">À propos</h2>
-            <div class="picture_propos">
-                <div class="info_picture_propos">
-                    <div class="picture_propos_text">
-                        <h3>L'équipe</h3>
-                        <p>Je suis un développeur web passionné par la création de sites internet.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="separateur"></div>
-
-        <div class="contact" id="contact">
-            <h2 class="title_category">Contact</h2>
-            <div class="contact_text">
-                <form action="/envoyer" method="post" class="contact_form">
-                    <div class="form_top">
-                        <div class="form_top_left">
-                            <div>
-                                <label for="name">Nom&nbsp;:</label>
-                                <input type="text" id="name" name="user_name" placeholder="Vendé Mathis" />
-                            </div>
-                            <div>
-                                <label for="mail">E-mail&nbsp;:</label>
-                                <input type="email" id="mail" name="user_mail" placeholder="mathis.vende7@gmail.com" />
-                            </div>
-                        </div>
-                        <div class="form_top_right">
-                            <div>
-                                <label for="msg">Message&nbsp;:</label>
-                                <textarea id="msg" name="user_message" placeholder="Saisissez votre message"></textarea>
-                            </div>
-                        </div>   
-                    </div>
-                    <div class="form_bottom">
-                        <button type="submit">Envoyer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="separateur"></div>
-
-        <div class="commentaires" id="commentaires">
-            <h2 class="title_category">Avis</h2>
-            <div class="commentaire">
-                <img src="{{ url_for('static', filename='img/user.png') }}" class="commentaire_img" alt="photo de profil utilisateur">
-                <div class="commentaire_text">
-                    <h3 class="commentaire_nom">Nom de l'utilisateur</h3>
-                    <p class="commentaire_message">Incroyable !</p>
-                </div>
-            </div>
-            <div class="commentaire">
-                <img src="{{ url_for('static', filename='img/user.png') }}" class="commentaire_img" alt="photo de profil utilisateur">
-                <div class="commentaire_text">
-                    <h3 class="commentaire_nom">Nom de l'utilisateur</h3>
-                    <p class="commentaire_message">Super design, mais quelques bugs à corriger.</p>
-                </div>
-            </div>
-        </div>
     </div>
 
     <footer>
