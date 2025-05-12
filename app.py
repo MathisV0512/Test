@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, redirect, url_for, render_template
 import smtplib
 from email.mime.text import MIMEText
 import os
@@ -38,8 +38,7 @@ def envoyer():
             server.send_message(msg)
         return "Message envoyé avec succès !"
     except Exception as e:
-        return f"Erreur lors de l'envoi : {e}"
-
+        return redirect(url_for('index'))
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Port auto-assigné par Render
     app.run(host='0.0.0.0', port=port, debug=True)
