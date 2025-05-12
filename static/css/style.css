@@ -58,6 +58,9 @@ nav .onglets input {
     border: none;
     outline: none;
     background-color: #f2f2f2;
+    max-width: 200px; /* Limite la longueur */
+    width: 100%;       /* Permet l’adaptation jusqu’à 200px max */
+    box-sizing: border-box;
 }
 
 
