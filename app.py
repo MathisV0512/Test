@@ -17,6 +17,9 @@ def index():
 def boutique():
     return render_template('boutique.html')
 
+@app.route('/contact')
+def contact():
+    return redirect('/#contact')
 
 @app.route('/envoyer', methods=['POST'])
 def envoyer():
