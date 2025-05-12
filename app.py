@@ -18,25 +18,27 @@ def envoyer():
     sender_email = request.form['user_mail']
     message_user = request.form['user_message']
 
-    # Récupération des infos de connexion Gmail via variables d’environnement
     destinataire = os.environ.get('EMAIL_USER')
     sender_password = os.environ.get('EMAIL_PASS')
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
 
-    msg = MIMEText(message_user)
+    # Corps du message avec adresse de l'utilisateur
+    body = f"Message de : {sender_email}\n\n{message_user}"
+    msg = MIMEText(body)
     msg['Subject'] = "Message depuis le formulaire Flask"
-    msg['From'] = sender_email
+    msg['From'] = destinataire
     msg['To'] = destinataire
+    msg['Reply-To'] = sender_email  # Pour pouvoir répondre à l'utilisateur
 
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()
             server.login(destinataire, sender_password)
             server.send_message(msg)
-        return f"E-mail envoyé à {destinataire} !"
+        return "Message envoyé avec succès !"
     except Exception as e:
-        return f"Erreur lors de l'envoi de l'e-mail : {str(e)}"
+        return f"Erreur lors de l'envoi : {e}"
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Port auto-assigné par Render
