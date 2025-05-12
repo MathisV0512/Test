@@ -28,7 +28,7 @@ def about():
 @app.route('/commentaire')
 def commentaire():
     return render_template('commentaire.html')
-    
+
 @app.route('/envoyer', methods=['POST'])
 def envoyer():
     sender_email = request.form['user_mail']

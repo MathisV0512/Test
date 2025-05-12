@@ -5,7 +5,7 @@ body {
 }
 
 header{
-    background-color: #db0c4a;
+    background-color: #424242;
     position: relative;
     height: 80px;
     top: 0;
@@ -28,7 +28,7 @@ header>ul {
 }
 
 header, header a {
-    color: white;
+    color: rgb(131, 202, 0);
     text-decoration: none;
 }
 
@@ -84,7 +84,7 @@ header>ul li:hover {
 .separateur {
     width: 100%;
     height: 3px;
-    background-color: #db0c4a;
+    background-color: #424242;
     margin: 20px 0;
 }
 
@@ -133,7 +133,7 @@ header>ul li:hover {
 input:not(input[type="submit"]), textarea{
     width: 30vw;
     border: none;
-    border-bottom: 2px solid #db0c4a;
+    border-bottom: 2px solid #424242;
     resize: none;
     outline: none;
     font-family: Arial, sans-serif;
@@ -169,13 +169,13 @@ label {
 }
 
 .form_bottom button[type="submit"] {
-    background-color: #db0c4a;
+    background-color: #424242;
     border-radius: 20px;
     border: none;
     padding: 10px;
     font-weight: 600;
     font-size: 20px;
-    color: white;
+    color: rgb(131, 202, 0);
     font-family: Arial, sans-serif;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     margin-bottom: 8àpx;
@@ -210,12 +210,12 @@ label {
 footer {
     height: 80px;
     position: relative;
-    background-color: #db0c4a;
+    background-color: #424242;
 }
 
 footer p {
     position: absolute;
-    color: white;
+    color: rgb(131, 202, 0);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -226,7 +226,7 @@ footer p {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #db0c4a;
+    background-color: #424242;
     z-index: 99;
     transition: top 0.5s ease-in-out;
 }

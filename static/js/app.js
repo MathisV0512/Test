@@ -8,9 +8,9 @@ window.addEventListener('DOMContentLoaded', () => {
     inputs.forEach(input => {
         input.addEventListener("focus", function () {
             inputs.forEach(i => {
-                i.style.borderBottom = "2px solid #db0c4a";
+                i.style.borderBottom = "2px solid #424242";
             });
-            this.style.borderBottom = "2px solid black";
+            this.style.borderBottom = "2px solid rgb(131, 202, 0)";
         });
     });
 });
