@@ -22,13 +22,13 @@ def contact():
     return render_template('contact.html')
 
 @app.route('/about')
-def contact():
+def about():
     return render_template('about.html')
 
 @app.route('/commentaire')
-def contact():
+def commentaire():
     return render_template('commentaire.html')
-
+    
 @app.route('/envoyer', methods=['POST'])
 def envoyer():
     sender_email = request.form['user_mail']
