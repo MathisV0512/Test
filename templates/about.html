@@ -5,21 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8d7xj1z5l5e5b5e5b5e5b5e5b5e5b5e5b5e" crossorigin="anonymous">
     <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}">
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
     <title>LucasPhoto29</title>
 </head>
 <body>
-    <header>
+    <nav>
         <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
-        <a href="/">LucasPhoto29</a>
-        <ul>
-            <li><a href="{{ url_for('about') }}">À propos</a></li>
-            <li><a href="{{ url_for('contact') }}">Contact</a></li>
-            <li><a href="{{ url_for('boutique') }}">Boutique</a></li>
-            <li><a href="{{ url_for('commentaire') }}">Avis</a></li>
-        </ul>
-    </header>
+        <h1>LucasPhoto29</h1>
+        <div class="onglets">
+            <p class="link"><a href="{{ url_for('about') }}">À propos</a></p>
+            <p class="link"><a href="{{ url_for('contact') }}">Contact</a></p>
+            <p class="link"><a href="{{ url_for('boutique') }}">Boutique</a></p>
+            <p class="link"><a href="{{ url_for('commentaire') }}">Avis</a></p>
+            <form>
+                <input type="search" placeholder="Rechercher..." id="search">   
+            </form>
+            <p><i class="fa-solid fa-cart-shopping"></i></p>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="about" id="about">

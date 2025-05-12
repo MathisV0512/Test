@@ -4,51 +4,68 @@ body {
     padding: 0;
 }
 
-header{
-    background-color: #424242;
-    position: relative;
-    height: 80px;
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px ;
+    background-color: #ffffff;
+    position: sticky;
     top: 0;
 }
 
-header img {
+nav img {
     width: 50px;
 }
 
-header>*{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0 30px 0 30px; 
-}
-
-header>ul {
-    right: 0;
-    text-decoration: none;
-}
-
-header, header a {
-    color: rgb(131, 202, 0);
-    text-decoration: none;
-}
-
-header a:nth-child(2) {
+nav h1 {
     font-size: 20px;
-    font-weight: 600;
-    margin-left: 100px;
-
 }
 
-header>ul li {
-    display: inline-block;
-    font-weight: 600;
-    margin: 10px;
-    list-style: none;
-    transition: background-color 0.5s ease-in-out;
+nav .onglets{
+    display: flex;
+    flex-wrap: wrap;
 }
 
-header>ul li:hover {
+nav .onglets p {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+nav .onglets p:hover {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+nav .onglets input{
+    margin: 8px 20px;
+    padding: 15px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    background-color: #f2f2f2;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header h1 {
+    font-size: 50px;
+    max-width: 500px;
+    text-align: center;
+}
+
+header button{
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
 .container {
