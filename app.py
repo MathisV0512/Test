@@ -21,8 +21,19 @@ def boutique():
 
     # Liste simulée de 12 produits
     photos = [
-        {"filename": f"photo{i}.jpg", "title": f"Photo {i}", "price": "20€", "desc": f"Description du produit {i}."}
-        for i in range(1, 13)
+        {"filename": "photo1.jpg", "title": "Chapeau de paille", "price": "25€", "desc": "Un chapeau idéal pour l'été."},
+        {"filename": "photo2.jpg", "title": "Lunettes de soleil", "price": "15€", "desc": "Protection UV garantie."},
+        {"filename": "photo3.jpg", "title": "Sac en cuir", "price": "60€", "desc": "Fait main avec soin."},
+        {"filename": "photo4.jpg", "title": "Montre élégante", "price": "120€", "desc": "Élégance et précision."},
+        {"filename": "photo4.jpg", "title": "Montre élégante", "price": "120€", "desc": "Élégance et précision."},
+        {"filename": "photo5.jpg", "title": "Bracelet en argent", "price": "45€", "desc": "Un bijou intemporel."},
+        {"filename": "photo6.jpg", "title": "Boucles d'oreilles", "price": "30€", "desc": "Pour un look chic."},
+        {"filename": "photo7.jpg", "title": "Écharpe en laine", "price": "35€", "desc": "Chaleur et confort."},
+        {"filename": "photo8.jpg", "title": "Portefeuille en cuir", "price": "50€", "desc": "Pratique et élégant."},
+        {"filename": "photo9.jpg", "title": "Tote bag en coton", "price": "20€", "desc": "Pour vos courses."},
+        {"filename": "photo10.jpg", "title": "Bottines en cuir", "price": "80€", "desc": "Confort et style."},
+        {"filename": "photo11.jpg", "title": "Ceinture en cuir", "price": "40€", "desc": "Accessoire indispensable."},
+        {"filename": "photo12.jpg", "title": "Gant en cuir", "price": "25€", "desc": ""}  
     ]
 
     # Découpage des photos selon la page
@@ -31,7 +42,7 @@ def boutique():
     paginated_photos = photos[start:end]
 
     # Nombre total de pages
-    total_pages = (len(photos) + per_page - 1) // per_page
+    total_pages = ((len(photos) // per_page) + (1 if len(photos) % per_page > 0 else 0))
 
     return render_template(
         'boutique.html',
