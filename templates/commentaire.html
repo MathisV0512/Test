@@ -12,8 +12,10 @@
 </head>
 <body>
     <nav>
-        <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
-        <h1>LucasPhoto29</h1>
+        <div class="logo-titre">
+            <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
+            <h1>LucasPhoto29</h1>
+        </div>
         <div class="onglets">
             <p class="link"><a href="{{ url_for('about') }}">À propos</a></p>
             <p class="link"><a href="{{ url_for('contact') }}">Contact</a></p>
