@@ -92,7 +92,9 @@ header button{
     display: block;
     width: 80%;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 80px;
+    justify-content: center;
+    align-items: center;
 }
 
 .bienvenue{
@@ -277,6 +279,32 @@ footer p {
     font-size: 30px;
     font-weight: 600;
 }
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cards .card {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.cards .card img {
+    width: 350px;
+    transform: scale(1.05);
+}
+
+.cards .card .card_header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cards .card .card_body p{
+    margin-top: -10px;
+}
+
 
 /* TABLETTE : écrans entre 768px et 1024px */
 @media screen and (max-width: 1024px) {
