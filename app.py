@@ -23,8 +23,6 @@ def boutique():
     photos = [
         {"filename": "photo1.jpg", "title": "Chapeau de paille", "price": "25€", "desc": "Un chapeau idéal pour l'été."},
         {"filename": "photo2.jpg", "title": "Lunettes de soleil", "price": "15€", "desc": "Protection UV garantie."},
-        {"filename": "photo3.jpg", "title": "Sac en cuir", "price": "60€", "desc": "Fait main avec soin."},
-        {"filename": "photo4.jpg", "title": "Montre élégante", "price": "120€", "desc": "Élégance et précision."},
         {"filename": "photo4.jpg", "title": "Montre élégante", "price": "120€", "desc": "Élégance et précision."},
         {"filename": "photo5.jpg", "title": "Bracelet en argent", "price": "45€", "desc": "Un bijou intemporel."},
         {"filename": "photo6.jpg", "title": "Boucles d'oreilles", "price": "30€", "desc": "Pour un look chic."},
