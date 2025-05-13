@@ -280,15 +280,23 @@ footer p {
     font-weight: 600;
 }
 
-.cards{
+.cards {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px; /* espace uniforme entre les cartes */
+    justify-content: center; /* centrage horizontal */
 }
 
 .cards .card {
-    margin-right: 20px;
+    width: 350px; /* taille fixe pour toutes les cartes */
+    box-sizing: border-box;
     cursor: pointer;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
 }
+
 
 .cards .card img {
     width: 350px;
@@ -303,6 +311,25 @@ footer p {
 
 .cards .card .card_body p{
     margin-top: -10px;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 8px 12px;
+    text-decoration: none;
+    background: #eee;
+    border-radius: 5px;
+    color: #333;
+}
+
+.pagination a.active {
+    background: #333;
+    color: #fff;
 }
 
 

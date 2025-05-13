@@ -15,7 +15,30 @@ def index():
 
 @app.route('/boutique')
 def boutique():
-    return render_template('boutique.html')
+    # Récupération du numéro de page (1 par défaut)
+    page = int(request.args.get('page', 1))
+    per_page = 9
+
+    # Liste simulée de 12 produits
+    photos = [
+        {"filename": f"photo{i}.jpg", "title": f"Photo {i}", "price": "20€", "desc": f"Description du produit {i}."}
+        for i in range(1, 13)
+    ]
+
+    # Découpage des photos selon la page
+    start = (page - 1) * per_page
+    end = start + per_page
+    paginated_photos = photos[start:end]
+
+    # Nombre total de pages
+    total_pages = (len(photos) + per_page - 1) // per_page
+
+    return render_template(
+        'boutique.html',
+        photos=paginated_photos,
+        page=page,
+        total_pages=total_pages
+    )
 
 @app.route('/contact')
 def contact():
