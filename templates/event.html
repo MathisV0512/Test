@@ -29,14 +29,19 @@
     </nav>
 
     <div class="container">
+        <h2>Photos de l'événement : {{ event.title }}</h2>
         <div class="cards">
-            {% for event in events %}
+            {% for photo in photos %}
             <div class="card">
-                <a href="{{ url_for('event', id=event.id) }}">
-                    <img src="{{ url_for('static', filename='img/' + event.filename) }}" alt="{{ event.title }}">
+                <a href="{{ url_for('produit', id=photo.id) }}">
+                    <img src="{{ url_for('static', filename='img/' + photo.filename) }}" alt="{{ photo.title }}">
                 </a>
                 <div class="card-header">
-                    <h3>{{ event.title }}</h3>
+                    <h3>{{ photo.title }}</h3>
+                    <h3 class="card_price">{{ photo.price }}</h3>
+                </div>
+                <div class="card_body">
+                    <p>{{ photo.description }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -45,13 +50,13 @@
         <!-- Pagination -->
         <div class="pagination">
             {% if page > 1 %}
-                <a href="{{ url_for('boutique', page=page-1) }}">&laquo; Précédent</a>
+                <a href="{{ url_for('event', page=page-1) }}">&laquo; Précédent</a>
             {% endif %}
             {% for p in range(1, total_pages + 1) %}
-                <a href="{{ url_for('boutique', page=p) }}" class="{{ 'active' if p == page else '' }}">{{ p }}</a>
+                <a href="{{ url_for('event', page=p) }}" class="{{ 'active' if p == page else '' }}">{{ p }}</a>
             {% endfor %}
             {% if page < total_pages %}
-                <a href="{{ url_for('boutique', page=page+1) }}">Suivant &raquo;</a>
+                <a href="{{ url_for('event', page=page+1) }}">Suivant &raquo;</a>
             {% endif %}
         </div>
     </div>
