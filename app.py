@@ -69,24 +69,24 @@ def event(id):
     if event_data is None:
         abort(404)
 
-    # Récupération des photos de cet événement
-    event_photos = [p for p in photos if p.get('event_id') == id]
-
-    # Pagination
     page = int(request.args.get('page', 1))
     per_page = 9
+
+    # Filtrer les photos appartenant à cet événement
+    photos_for_event = [p for p in photos if p['event_id'] == id]
+
     start = (page - 1) * per_page
     end = start + per_page
-    paginated_photos = event_photos[start:end]
+    paginated_photos = photos_for_event[start:end]
 
-    total_pages = (len(event_photos) + per_page - 1) // per_page
+    total_pages = (len(photos_for_event) + per_page - 1) // per_page
 
     return render_template(
         'event.html',
         photos=paginated_photos,
         page=page,
         total_pages=total_pages,
-        event=event_data
+        event_data=event_data  
     )
 
 
