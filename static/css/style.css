@@ -2,6 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #fff;
+    color: #111;
 }
 
 nav {
@@ -350,47 +352,75 @@ footer p {
     color: #fff;
 }
 
-.product-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
+.product-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 0 20px;
 }
 
-.product-container img {
+.product-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.product-image img {
     width: 100%;
-    max-width: 400px;
-    display: block;
-    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.product-details {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-details h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .btn-ajouter {
-    background-color: #007BFF;
+    background-color: #111;
     color: white;
-    padding: 10px 20px;
+    padding: 15px;
     border: none;
-    border-radius: 8px;
+    border-radius: 30px;
+    font-size: 1rem;
     cursor: pointer;
-    margin-bottom: 20px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn-ajouter:hover {
+    background-color: #444;
 }
 
 .accordion {
-    cursor: pointer;
-    padding: 12px;
-    width: 100%;
-    text-align: left;
-    outline: none;
+    background-color: transparent;
     border: none;
-    background-color: #f1f1f1;
+    font-size: 1rem;
+    text-align: left;
+    padding: 0;
+    margin-top: 20px;
+    cursor: pointer;
     font-weight: bold;
-    margin-top: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 .panel {
-    padding: 0 18px;
-    background-color: white;
     display: none;
-    overflow: hidden;
-    border: 1px solid #ccc;
+    margin-top: 10px;
+    color: #333;
 }
 
 

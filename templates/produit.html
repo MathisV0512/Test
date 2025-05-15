@@ -28,19 +28,23 @@
         </div>
     </nav>
 
-    <div class="product-container">
-        <h1>{{ produit.title }}</h1>
-        <img src="{{ url_for('static', filename='img/' + produit.filename) }}" alt="{{ produit.title }}">
-        <p><strong>Prix :</strong> {{ produit.price }} €</p>
-
-        <button class="btn-ajouter">Ajouter au panier</button>
-
-        <button class="accordion">Description</button>
-        <div class="panel">
-            <p>{{ produit.description }}</p>
+    <div class="product-page">
+        <div class="product-image">
+            <img src="{{ url_for('static', filename='img/' + produit.filename) }}" alt="{{ produit.title }}">
         </div>
 
-        <p><a href="{{ url_for('boutique') }}">← Retour à la boutique</a></p>
+        <div class="product-details">
+            <h1>{{ produit.title }}</h1>
+            <p class="product-price">{{ produit.price }} €</p>
+            <button class="btn-ajouter">Ajouter au panier</button>
+
+            <button class="accordion">Description <i class="fa-solid fa-arrow-down"></i></button>
+            <div class="panel">
+                <p>{{ produit.description }}</p>
+            </div>
+
+            <p><a href="{{ url_for('boutique') }}">← Retour à la boutique</a></p>
+        </div>
     </div>
 
     <footer>
