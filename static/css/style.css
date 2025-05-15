@@ -68,6 +68,10 @@ nav .onglets input {
     margin-top: 20px;
 }
 
+nav .onglets i{
+    cursor: pointer;
+}
+
 header{
     display: flex;
     justify-content: center;
@@ -377,6 +381,15 @@ footer p {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.product-details a {
+    margin: 0 5px;
+    padding: 8px 12px;
+    text-decoration: none;
+    background: #eee;
+    border-radius: 5px;
+    color: #333;
 }
 
 .product-details h1 {
