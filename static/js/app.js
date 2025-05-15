@@ -13,4 +13,11 @@ window.addEventListener('DOMContentLoaded', () => {
             this.style.borderBottom = "2px solid rgb(131, 202, 0)";
         });
     });
+
+    document.querySelectorAll(".accordion").forEach(button => {
+            button.addEventListener("click", () => {
+                const panel = button.nextElementSibling;
+                panel.style.display = panel.style.display === "block" ? "none" : "block";
+        });
+    });
 });

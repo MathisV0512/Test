@@ -350,6 +350,50 @@ footer p {
     color: #fff;
 }
 
+.product-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.product-container img {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.btn-ajouter {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.accordion {
+    cursor: pointer;
+    padding: 12px;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    border: none;
+    background-color: #f1f1f1;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+
 
 /* TABLETTE : écrans entre 768px et 1024px */
 @media screen and (max-width: 1024px) {
