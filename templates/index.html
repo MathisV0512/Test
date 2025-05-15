@@ -13,38 +13,39 @@
     <div class="loader" id="loader">
         <p>Chargement...</p>
     </div>
-    <nav>
-        <div class="logo-titre">
-            <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
-            <h1>LucasPhoto29</h1>
-        </div>
-        <div class="onglets">
-            <p class="link"><a href="{{ url_for('about') }}">À propos</a></p>
-            <p class="link"><a href="{{ url_for('contact') }}">Contact</a></p>
-            <p class="link"><a href="{{ url_for('boutique') }}">Boutique</a></p>
-            <p class="link"><a href="{{ url_for('commentaire') }}">Avis</a></p>
-            <form>
-                <input type="search" placeholder="Rechercher..." id="search">   
-            </form>
-            <p><i class="fa-solid fa-cart-shopping"></i></p>
-        </div>
-    </nav>
-    <header>
-        <h1>Boutique de photographie sportive</h1>
-        <button>Naviguer <i class="fa-solid fa-paper-plane"></i></button>
-    </header>
-
-    <div class="container">
-        <div class="bienvenue">
-            <img src="{{ url_for('static', filename='img/accueil.jpg') }}" alt="image d'accueil">
-            <div class="texte">
-                <h1>Bienvenue sur mon site</h1>
-                <p>Voici un exemple de page d'accueil.</p>
+    <div class="wrapper">
+        <nav>
+            <div class="logo-titre">
+                <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
+                <h1>LucasPhoto29</h1>
             </div>
-        </div>
-        <div class="separateur"></div>
-    </div>
+            <div class="onglets">
+                <p class="link"><a href="{{ url_for('about') }}">À propos</a></p>
+                <p class="link"><a href="{{ url_for('contact') }}">Contact</a></p>
+                <p class="link"><a href="{{ url_for('boutique') }}">Boutique</a></p>
+                <p class="link"><a href="{{ url_for('commentaire') }}">Avis</a></p>
+                <form>
+                    <input type="search" placeholder="Rechercher..." id="search">   
+                </form>
+                <p><i class="fa-solid fa-cart-shopping"></i></p>
+            </div>
+        </nav>
+        <header>
+            <h1>Boutique de photographie sportive</h1>
+            <button>Naviguer <i class="fa-solid fa-paper-plane"></i></button>
+        </header>
 
+        <div class="container">
+            <div class="bienvenue">
+                <img src="{{ url_for('static', filename='img/accueil.jpg') }}" alt="image d'accueil">
+                <div class="texte">
+                    <h1>Bienvenue sur mon site</h1>
+                    <p>Voici un exemple de page d'accueil.</p>
+                </div>
+            </div>
+            <div class="separateur"></div>
+        </div>
+    </div>
     <footer>
         <p>© 2023 Mon Site. Tous droits réservés.</p>
     </footer>

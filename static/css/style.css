@@ -1,9 +1,22 @@
-body {
-    font-family: Arial, sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
     background-color: #fff;
     color: #111;
+
+    /* Ajout pour le footer sticky */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wrapper {
+    flex: 1;
 }
 
 nav {
@@ -253,9 +266,10 @@ label {
 }
 
 footer {
-    height: 80px;
-    position: relative;
-    background-color: #424242;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
 }
 
 footer p {
