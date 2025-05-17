@@ -99,9 +99,12 @@ def produit(id):
     return render_template('produit.html', produit=produit)
 
 @app.route('/panier')
-def panier(item):
-    cart_items.append(item)
+def panier():
+    item = request.args.get('item')
+    if item:
+        cart_items.append(item)
     return render_template('panier.html', cart_items=cart_items)
+
 
 @app.route('/contact')
 def contact():
