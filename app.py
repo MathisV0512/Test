@@ -33,6 +33,8 @@ events = [
     {"id": 11, "filename": "photo12.jpg", "title": "Gant en cuir"}  
 ]
 
+cart_items= []
+
 # Charger les variables d’environnement si en local
 load_dotenv()
 
@@ -89,7 +91,6 @@ def event(id):
         event_data=event_data  
     )
 
-
 @app.route('/produit/<int:id>')
 def produit(id):
     produit = next((p for p in photos if p['id'] == id), None)
@@ -97,6 +98,10 @@ def produit(id):
         abort(404)
     return render_template('produit.html', produit=produit)
 
+@app.route('/panier')
+def panier(item):
+    cart_items.append(item)
+    return render_template('panier.html', cart_items=cart_items)
 
 @app.route('/contact')
 def contact():
