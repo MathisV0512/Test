@@ -36,7 +36,7 @@
         <div class="product-details">
             <h1>{{ produit.title }}</h1>
             <p class="product-price">{{ produit.price }} €</p>
-            <button class="btn-ajouter"><a href="{{ url_for('panier', item=produit) }}">Ajouter au panier</a></button>
+            <button class="btn-ajouter"><a href="{{ url_for('panier', item=produit.id) }}">Ajouter au panier</a></button>
 
             <button class="accordion">Description <i class="fa-solid fa-arrow-down"></i></button>
             <div class="panel">

@@ -100,10 +100,17 @@ def produit(id):
 
 @app.route('/panier')
 def panier():
-    item = request.args.get('item')
-    if item:
-        cart_items.append(item)
+    item_id = request.args.get('item')
+    if item_id:
+        try:
+            item_id = int(item_id)
+            produit = next((p for p in photos if p['id'] == item_id), None)
+            if produit and produit not in cart_items:
+                cart_items.append(produit)
+        except ValueError:
+            pass  # En cas d'ID invalide
     return render_template('panier.html', cart_items=cart_items)
+
 
 
 @app.route('/contact')
