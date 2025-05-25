@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template, abort
+from flask import Flask, request, redirect, url_for, render_template, abort, session 
 import smtplib
 from email.mime.text import MIMEText
 import os
@@ -32,6 +32,12 @@ events = [
     {"id": 10, "filename": "photo11.jpg", "title": "Ceinture en cuir"},
     {"id": 11, "filename": "photo12.jpg", "title": "Gant en cuir"}  
 ]
+
+def get_item_by_id(item_id):
+    for item in photos:
+        if item['id'] == item_id:
+            return item
+    return None
 
 cart_items= []
 
@@ -100,16 +106,35 @@ def produit(id):
 
 @app.route('/panier')
 def panier():
-    item_id = request.args.get('item')
-    if item_id:
-        try:
-            item_id = int(item_id)
-            produit = next((p for p in photos if p['id'] == item_id), None)
-            if produit and produit not in cart_items:
-                cart_items.append(produit)
-        except ValueError:
-            pass  # En cas d'ID invalide
-    return render_template('panier.html', cart_items=cart_items)
+    cart_items = session.get('cart', [])
+    total_price = sum(item['price'] for item in cart_items)
+    return render_template('panier.html', cart_items=cart_items, total_price=total_price)
+
+@app.route('/ajouter/<int:item_id>', methods=['POST'])
+def ajouter_au_panier(item_id):
+    item = get_item_by_id(item_id)  # fonction à adapter
+    cart = session.get('cart', [])
+    cart.append(item)
+    session['cart'] = cart
+    return redirect(url_for('panier'))
+
+@app.route('/supprimer/<int:item_id>', methods=['POST'])
+def remove_from_cart(item_id):
+    cart = session.get('cart', [])
+    cart = [item for item in cart if item['id'] != item_id]
+    session['cart'] = cart
+    return redirect(url_for('panier'))
+
+@app.route('/vider_panier', methods=['POST'])
+def clear_cart():
+    session['cart'] = []
+    return redirect(url_for('panier'))
+
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    # ici tu peux traiter le paiement ou stocker la commande
+    session['cart'] = []
+    return "Commande validée ! Merci pour votre achat."
 
 
 

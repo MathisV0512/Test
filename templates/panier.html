@@ -5,49 +5,80 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css" >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
     <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}">
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-    <title>LucasPhoto29</title>
+    <title>Panier - LucasPhoto29</title>
 </head>
 <body>
-    <nav>
-        <div class="logo-titre">
-            <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
-            <h1>LucasPhoto29</h1>
-        </div>
-        <div class="onglets">
-            <p class="link"><a href="{{ url_for('about') }}">À propos</a></p>
-            <p class="link"><a href="{{ url_for('contact') }}">Contact</a></p>
-            <p class="link"><a href="{{ url_for('boutique') }}">Boutique</a></p>
-            <p class="link"><a href="{{ url_for('commentaire') }}">Avis</a></p>
-            <form>
-                <input type="search" placeholder="Rechercher..." id="search">   
-            </form>
-            <p><i class="fa-solid fa-cart-shopping"></i></p>
-        </div>
-    </nav>
 
-    <div class="container">
-        <div class="cart">
-            <h2 class="title_category">Panier</h2>
-            <div class="cart_items">
-                {% for item in cart_items %}
-                <div class="cart_item">
-                    <img src="{{ url_for('static', filename='img/' + item.filename) }}" alt="{{ item.title }}">
-                    <div class="cart_item_details">
-                        <h3>{{ item.title }}</h3>
-                        <p>{{ item.price }} €</p>
+<nav>
+    <div class="logo-titre">
+        <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
+        <h1>LucasPhoto29</h1>
+    </div>
+    <div class="onglets">
+        <p class="link"><a href="{{ url_for('about') }}">À propos</a></p>
+        <p class="link"><a href="{{ url_for('contact') }}">Contact</a></p>
+        <p class="link"><a href="{{ url_for('boutique') }}">Boutique</a></p>
+        <p class="link"><a href="{{ url_for('commentaire') }}">Avis</a></p>
+        <form>
+            <input type="search" placeholder="Rechercher..." id="search">   
+        </form>
+        <p><a href="{{ url_for('panier') }}"><i class="fa-solid fa-cart-shopping"></i></a></p>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="cart">
+        <h2 class="title_category">Panier</h2>
+
+        {% if cart_items %}
+        <div class="cart_items">
+            {% for item in cart_items %}
+            <div class="cart_item">
+                <img src="{{ url_for('static', filename='img/' + item.filename) }}" alt="{{ item.title }}">
+                <div class="cart_item_details">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.price }} €</p>
+                    <div class="cart_item_actions">
+                        <form method="POST" action="{{ url_for('update_quantity', item_id=item.id) }}">
+                            <button type="submit" name="action" value="moins">-</button>
+                            <span>{{ item.quantity }}</span>
+                            <button type="submit" name="action" value="plus">+</button>
+                        </form>
+                        <form method="POST" action="{{ url_for('remove_from_cart', item_id=item.id) }}">
+                            <button type="submit">Supprimer</button>
+                        </form>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
+
+        <div class="cart_total">
+            Total : {{ total_price }} €
+        </div>
+        <a href="{{ url_for('checkout') }}" class="btn-valider">Valider la commande</a>
+
+        <div class="cart_summary">
+            <p><strong>Total :</strong> {{ total_price }} €</p>
+            <form method="POST" action="{{ url_for('clear_cart') }}">
+                <button type="submit" class="btn-clear">Vider le panier</button>
+            </form>
+            <form method="POST" action="{{ url_for('checkout') }}">
+                <button type="submit" class="btn-checkout">Passer la commande</button>
+            </form>
+        </div>
+        {% else %}
+            <p>Votre panier est vide.</p>
+        {% endif %}
     </div>
+</div>
 
+<footer>
+    <p>© 2023 LucasPhoto29. Tous droits réservés.</p>
+</footer>
 
-    <footer>
-        <p>© 2023 Mon Site. Tous droits réservés.</p>
-    </footer>
 </body>
 </html>
