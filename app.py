@@ -108,10 +108,10 @@ def produit(id):
 def panier():
     cart = session.get('cart', {})
     cart_items = []
-
     total_price = 0
+
     for item_id, item_data in cart.items():
-        produit = get_item_by_id(int(item_id))  # Une fonction pour récupérer les infos du produit
+        produit = get_item_by_id(int(item_id))
         if produit:
             produit['quantity'] = item_data['quantity']
             cart_items.append(produit)
@@ -122,9 +122,13 @@ def panier():
 
 @app.route('/ajouter/<int:item_id>', methods=['POST'])
 def ajouter_au_panier(item_id):
-    item = get_item_by_id(item_id)  # fonction à adapter
-    cart = session.get('cart', [])
-    cart.append(item)
+    cart = session.get('cart', {})
+
+    if str(item_id) in cart:
+        cart[str(item_id)]['quantity'] += 1
+    else:
+        cart[str(item_id)] = {'quantity': 1}
+
     session['cart'] = cart
     return redirect(url_for('panier'))
 
