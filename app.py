@@ -106,9 +106,19 @@ def produit(id):
 
 @app.route('/panier')
 def panier():
-    cart_items = session.get('cart', [])
-    total_price = sum(item['price'] for item in cart_items)
+    cart = session.get('cart', {})
+    cart_items = []
+
+    total_price = 0
+    for item_id, item_data in cart.items():
+        produit = get_item_by_id(int(item_id))  # Une fonction pour récupérer les infos du produit
+        if produit:
+            produit['quantity'] = item_data['quantity']
+            cart_items.append(produit)
+            total_price += produit['price'] * produit['quantity']
+
     return render_template('panier.html', cart_items=cart_items, total_price=total_price)
+
 
 @app.route('/ajouter/<int:item_id>', methods=['POST'])
 def ajouter_au_panier(item_id):
