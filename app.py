@@ -1,24 +1,30 @@
-from flask import Flask, request, redirect, url_for, render_template, abort, session 
+from flask import Flask, request, redirect, url_for, render_template, abort, session
 import smtplib
 from email.mime.text import MIMEText
 import os
 from dotenv import load_dotenv
 
+# Charger les variables d’environnement si en local
+load_dotenv()
+
+app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY', 'cle-par-defaut')
+
+# Liste des produits (prix corrigés en float)
 photos = [
-    {"id": 1, "filename": "photo1.jpg", "title": "Chapeau de paille", "price": "15.99$", "description": "Un chapeau de paille léger et élégant pour l'été.", "event_id": 1},
-    {"id": 2, "filename": "photo2.jpg", "title": "Lunettes de soleil", "price": "25.99$", "description": "Des lunettes de soleil tendance pour protéger vos yeux.", "event_id": 1},
-    {"id": 3, "filename": "photo3.jpg", "title": "Montre élégante", "price": "99.99$", "description": "Une montre élégante pour toutes les occasions.", "event_id": 2},
-    {"id": 4, "filename": "photo4.jpg", "title": "Bracelet en argent", "price": "45.00$", "description": "Un bracelet en argent massif pour un look chic.", "event_id": 2},
-    {"id": 5, "filename": "photo5.jpg", "title": "Boucles d'oreilles", "price": "30.00$", "description": "Des boucles d'oreilles en or pour briller.", "event_id": 3},
-    {"id": 6, "filename": "photo6.jpg", "title": "Écharpe en laine", "price": "20.00$", "description": "Une écharpe en laine douce pour l'hiver.", "event_id": 3},
-    {"id": 7, "filename": "photo7.jpg", "title": "Portefeuille en cuir", "price": "50.00$", "description": "Un portefeuille en cuir de haute qualité.", "event_id": 4},
-    {"id": 8, "filename": "photo8.jpg", "title": "Tote bag en coton", "price": "15.00$", "description": "Un tote bag en coton bio pour vos courses.", "event_id": 4},
-    {"id": 9, "filename": "photo9.jpg", "title": "Bottines en cuir", "price": "$120.00",  "description": 'Des bottines en cuir confortables et stylées.', "event_id": 5},
-    {"id": 10, "filename": 'photo10.jpg', "title": 'Ceinture en cuir', "price": '$35.00', "description": 'Une ceinture en cuir robuste et élégante.', "event_id": 5},
-    {"id": 11, "filename": 'photo11.jpg', "title": 'Gant en cuir', "price": '$40.00', "description": 'Des gants en cuir doux et chauds.', "event_id": 5},
+    {"id": 1, "filename": "photo1.jpg", "title": "Chapeau de paille", "price": 15.99, "description": "Un chapeau de paille léger et élégant pour l'été.", "event_id": 1},
+    {"id": 2, "filename": "photo2.jpg", "title": "Lunettes de soleil", "price": 25.99, "description": "Des lunettes de soleil tendance pour protéger vos yeux.", "event_id": 1},
+    {"id": 3, "filename": "photo3.jpg", "title": "Montre élégante", "price": 99.99, "description": "Une montre élégante pour toutes les occasions.", "event_id": 2},
+    {"id": 4, "filename": "photo4.jpg", "title": "Bracelet en argent", "price": 45.00, "description": "Un bracelet en argent massif pour un look chic.", "event_id": 2},
+    {"id": 5, "filename": "photo5.jpg", "title": "Boucles d'oreilles", "price": 30.00, "description": "Des boucles d'oreilles en or pour briller.", "event_id": 3},
+    {"id": 6, "filename": "photo6.jpg", "title": "Écharpe en laine", "price": 20.00, "description": "Une écharpe en laine douce pour l'hiver.", "event_id": 3},
+    {"id": 7, "filename": "photo7.jpg", "title": "Portefeuille en cuir", "price": 50.00, "description": "Un portefeuille en cuir de haute qualité.", "event_id": 4},
+    {"id": 8, "filename": "photo8.jpg", "title": "Tote bag en coton", "price": 15.00, "description": "Un tote bag en coton bio pour vos courses.", "event_id": 4},
+    {"id": 9, "filename": "photo9.jpg", "title": "Bottines en cuir", "price": 120.00, "description": "Des bottines en cuir confortables et stylées.", "event_id": 5},
+    {"id": 10, "filename": "photo10.jpg", "title": "Ceinture en cuir", "price": 35.00, "description": "Une ceinture en cuir robuste et élégante.", "event_id": 5},
+    {"id": 11, "filename": "photo11.jpg", "title": "Gant en cuir", "price": 40.00, "description": "Des gants en cuir doux et chauds.", "event_id": 5},
 ]
 
-# Liste simulée de 12 produits
 events = [
     {"id": 1, "filename": "photo1.jpg", "title": "Chapeau de paille"},
     {"id": 2, "filename": "photo2.jpg", "title": "Lunettes de soleil"},
@@ -39,37 +45,20 @@ def get_item_by_id(item_id):
             return item
     return None
 
-cart_items= []
-
-# Charger les variables d’environnement si en local
-load_dotenv()
-
-app = Flask(__name__)
-
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/boutique')
 def boutique():
-    # Récupération du numéro de page (1 par défaut)
     page = int(request.args.get('page', 1))
     per_page = 9
-
-    # Découpage des events selon la page
     start = (page - 1) * per_page
     end = start + per_page
     paginated_events = events[start:end]
+    total_pages = ((len(events) + per_page - 1) // per_page)
 
-    # Nombre total de pages
-    total_pages = ((len(events) // per_page) + (1 if len(events) % per_page > 0 else 0))
-
-    return render_template(
-        'boutique.html',
-        events=paginated_events,
-        page=page,
-        total_pages=total_pages
-    )
+    return render_template('boutique.html', events=paginated_events, page=page, total_pages=total_pages)
 
 @app.route('/event/<int:id>')
 def event(id):
@@ -79,27 +68,17 @@ def event(id):
 
     page = int(request.args.get('page', 1))
     per_page = 9
-
-    # Filtrer les photos appartenant à cet événement
     photos_for_event = [p for p in photos if p['event_id'] == id]
-
     start = (page - 1) * per_page
     end = start + per_page
     paginated_photos = photos_for_event[start:end]
-
     total_pages = (len(photos_for_event) + per_page - 1) // per_page
 
-    return render_template(
-        'event.html',
-        photos=paginated_photos,
-        page=page,
-        total_pages=total_pages,
-        event_data=event_data  
-    )
+    return render_template('event.html', photos=paginated_photos, page=page, total_pages=total_pages, event_data=event_data)
 
 @app.route('/produit/<int:id>')
 def produit(id):
-    produit = next((p for p in photos if p['id'] == id), None)
+    produit = get_item_by_id(id)
     if produit is None:
         abort(404)
     return render_template('produit.html', produit=produit)
@@ -113,12 +92,12 @@ def panier():
     for item_id, item_data in cart.items():
         produit = get_item_by_id(int(item_id))
         if produit:
-            produit['quantity'] = item_data['quantity']
-            cart_items.append(produit)
-            total_price += produit['price'] * produit['quantity']
+            produit_copy = produit.copy()
+            produit_copy['quantity'] = item_data['quantity']
+            cart_items.append(produit_copy)
+            total_price += produit_copy['price'] * produit_copy['quantity']
 
     return render_template('panier.html', cart_items=cart_items, total_price=total_price)
-
 
 @app.route('/ajouter/<int:item_id>', methods=['POST'])
 def ajouter_au_panier(item_id):
@@ -134,22 +113,33 @@ def ajouter_au_panier(item_id):
 
 @app.route('/supprimer/<int:item_id>', methods=['POST'])
 def remove_from_cart(item_id):
-    cart = session.get('cart', [])
-    cart = [item for item in cart if item['id'] != item_id]
+    cart = session.get('cart', {})
+    cart.pop(str(item_id), None)
     session['cart'] = cart
     return redirect(url_for('panier'))
 
 @app.route('/vider_panier', methods=['POST'])
 def clear_cart():
-    session['cart'] = []
+    session['cart'] = {}
     return redirect(url_for('panier'))
 
 @app.route('/checkout', methods=['POST'])
 def checkout():
-    # ici tu peux traiter le paiement ou stocker la commande
-    session['cart'] = []
+    # Ici tu peux ajouter logique paiement / commande
+    session['cart'] = {}
     return "Commande validée ! Merci pour votre achat."
 
+@app.route('/update_quantity/<int:item_id>', methods=['POST'])
+def update_quantity(item_id):
+    action = request.form.get('action')
+    cart = session.get('cart', {})
+    if str(item_id) in cart:
+        if action == 'plus':
+            cart[str(item_id)]['quantity'] += 1
+        elif action == 'moins':
+            cart[str(item_id)]['quantity'] = max(1, cart[str(item_id)]['quantity'] - 1)
+    session['cart'] = cart
+    return redirect(url_for('panier'))
 
 
 @app.route('/contact')
@@ -171,16 +161,19 @@ def envoyer():
 
     destinataire = os.environ.get('EMAIL_USER')
     sender_password = os.environ.get('EMAIL_PASS')
+
+    if not destinataire or not sender_password:
+        return "Configuration e-mail manquante."
+
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
 
-    # Corps du message avec adresse de l'utilisateur
     body = f"Message de : {sender_email}\n\n{message_user}"
     msg = MIMEText(body)
     msg['Subject'] = "Message depuis le formulaire Flask"
     msg['From'] = destinataire
     msg['To'] = destinataire
-    msg['Reply-To'] = sender_email  # Pour pouvoir répondre à l'utilisateur
+    msg['Reply-To'] = sender_email
 
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
@@ -190,6 +183,7 @@ def envoyer():
         return redirect(url_for('index'))
     except Exception as e:
         return f"Erreur lors de l'envoi de l'e-mail : {str(e)}"
+
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # Port auto-assigné par Render
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)

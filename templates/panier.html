@@ -43,7 +43,7 @@
                     <p>{{ item.price }} €</p>
                     <div class="cart_item_actions">
                         <form method="POST" action="{{ url_for('update_quantity', item_id=item.id) }}">
-                            <button type="submit" name="action" value="moins">-</button>
+                            <button type="submit" name="action" value="moins">−</button>
                             <span>{{ item.quantity }}</span>
                             <button type="submit" name="action" value="plus">+</button>
                         </form>
@@ -56,20 +56,16 @@
             {% endfor %}
         </div>
 
-        <div class="cart_total">
-            Total : {{ total_price }} €
-        </div>
-        <a href="{{ url_for('checkout') }}" class="btn-valider">Valider la commande</a>
-
         <div class="cart_summary">
             <p><strong>Total :</strong> {{ total_price }} €</p>
             <form method="POST" action="{{ url_for('clear_cart') }}">
                 <button type="submit" class="btn-clear">Vider le panier</button>
             </form>
             <form method="POST" action="{{ url_for('checkout') }}">
-                <button type="submit" class="btn-checkout">Passer la commande</button>
+                <button type="submit" class="btn-checkout">Valider la commande</button>
             </form>
         </div>
+
         {% else %}
             <p>Votre panier est vide.</p>
         {% endif %}
