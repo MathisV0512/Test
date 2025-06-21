@@ -86,6 +86,7 @@ def produit(id):
 @app.route('/panier')
 def panier():
     cart = session.get('cart', {})
+    print(cart)  # Pour débogage, afficher le contenu du panier dans la console
     cart_items = []
     total_price = 0
 
@@ -107,6 +108,7 @@ def ajouter_au_panier(item_id):
         cart[str(item_id)]['quantity'] += 1
     else:
         cart[str(item_id)] = {'quantity': 1}
+        print(f"cool {cart}")
 
     session['cart'] = cart
     return redirect(url_for('panier'))

@@ -1,3 +1,59 @@
+.carousel-img {
+  height: 100px;
+  object-fit: contain;
+  background-color: #000; /* pour éviter les zones vides visibles */
+}
+
+
+/* STYLE POUR HERO (header) */
+
+.hero {
+  height: 90vh;
+  background-image: url("../img/accueil.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* ajout d'un overlay sombre pour que le texte soit lisible */
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Bouton dans le hero */
+.hero .btn {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Responsive: taille des titres */
+@media (max-width: 768px) {
+  .hero .display-1 {
+    font-size: 3rem;
+  }
+}
+
+/* Texte justifié dans la section bienvenue */
+section.py-5 p {
+  text-align: justify;
+}
+
+/* Footer */
+footer {
+  font-size: 0.9rem;
+}
+
+
 html, body {
     height: 100%;
     margin: 0;
